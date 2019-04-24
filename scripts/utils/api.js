@@ -30,8 +30,10 @@ const getRewards = async (fromTimestamp, toTimestamp) => {
   const { address } = delegate.account;
 
   const { data } = await client.delegates.getForgingStatistics(address, {
-    fromTimestamp: 1555852734000, // 1555852734000
-    toTimestamp: 1556056800000
+    // fromTimestamp: 1555852734000, // 1555852734000
+    // toTimestamp: 1556056800000,
+    fromTimestamp,
+    toTimestamp
   });
   const reward = fromRawLsk(data.rewards);
   const sharingReward = (reward * config.sharedPercent) / 100;
