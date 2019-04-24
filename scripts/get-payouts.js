@@ -23,32 +23,30 @@ const getDate = () => {
   const today = getDate(); // Calculate rewards only from start of the day not from execution time
   const { reward, sharingReward } = await getRewards(data.lastpayout, today);
 
-  const test = await getTransactions();
-
   console.log(
     `Forged: ${reward} LSK from ${new Date(data.lastpayout).toLocaleString()}`
   );
 
   const donationAddresses = Object.keys(config.donationsPercent);
 
-  //   let donations = [];
-  //   for (const addr of donationAddresses) {
-  //     const share = config.donationsPercent[addr];
+  let donations = [];
+  for (const addr of donationAddresses) {
+    const share = config.donationsPercent[addr];
 
-  //     const lsk = (reward * share) / 100;
+    const lsk = (reward * share) / 100;
 
-  //     console.log(
-  //       "Sharing " +
-  //         config.donationsPercent[addr] +
-  //         "% with " +
-  //         addr +
-  //         ` ${lsk}LSK`
-  //     );
-  //     donations.push({ address: addr, amount: lsk });
-  //   }
-  //   fs.writeFileSync("./data/donations.json", JSON.stringify(donations), {
-  //     spaces: 2
-  //   });
+    console.log(
+      "Sharing " +
+        config.donationsPercent[addr] +
+        "% with " +
+        addr +
+        ` ${lsk}LSK`
+    );
+    donations.push({ address: addr, amount: lsk });
+  }
+  fs.writeFileSync("./data/donations.json", JSON.stringify(donations), {
+    spaces: 2
+  });
 
   console.log(
     `Sharing ${config.sharedPercent}% with voters: ${sharingReward} LSK`
@@ -61,6 +59,6 @@ const getDate = () => {
 
   const rewards = calculateRewards(accounts, sharingReward, totalWeight);
   console.log("Saving data...");
-  saveRewards(data, rewards, today, test);
+  saveRewards(data, rewards, today);
   console.log("Data saved to file.");
 })();

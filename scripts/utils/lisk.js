@@ -26,21 +26,13 @@ const calculateRewards = (accounts, reward, voteWeight) =>
     []
   );
 
-const updateRewards = (data, payouts, date, oldTxs) => {
+const updateRewards = (data, payouts, date) => {
   payouts.map(({ address, balance }) => {
     const isAddressExist = data.accounts[address];
     if (!isAddressExist) {
-      const old = oldTxs.find(t => {
-        return t.recipientId === address;
-      });
-      if (old) {
-        console.log("From old lisk " + fromRawLsk(old.amount));
-      }
       // Add new record
       data.accounts[address] = {
-        pending: old
-          ? new BigNumber(balance).minus(fromRawLsk(old.amount)).toFixed()
-          : new BigNumber(balance).toFixed()
+        pending: new BigNumber(balance).toFixed()
       };
     } else {
       // Update exist account
