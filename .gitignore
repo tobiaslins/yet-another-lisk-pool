@@ -1,4 +1,4 @@
 .DS_Store
-/data/payments.json
+/data/payout.json
 /data/donations.json
 /node_modules
