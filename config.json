@@ -1,9 +1,19 @@
 {
-    "node": "http://81.82.205.50",
-    "port": "7000",
-    "isTestnet": true,
-    "epochPoolTime": 1516110177,
-    "sharedPercent": 25,
-    "minPayout": 1,
-    "delegatePubKey": "dcd8ad985ee1e9f0a9e2e180e06d05fe43041b57a895dcf6b6c48046366ba19e"
+  "node": "https://node01.lisk.io",
+  "port": "443",
+  "isTestnet": false,
+  "epochPoolTime": 1516110177,
+  "sharedPercent": 30,
+  "minPayout": 1,
+  "delegatePubKey": "286d8347dc9a9fa5bc3943598f6149e661396697a3b8ab4ebf870f7c14f0a465",
+  "exclude": {
+    "addresses": ["8826600420711080228L"],
+    "weightCap": false
+  },
+  "donationsPercent": {
+    "1832857759018027350L": 40,
+    "17613576135908145745L": 20,
+    "7980641727220926277L": 10
+  },
+  "weightCap": []
 }
