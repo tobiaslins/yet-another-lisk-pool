@@ -12,6 +12,15 @@ const client = config.isTestnet
   ? APIClient.createTestnetAPIClient({ node })
   : APIClient.createMainnetAPIClient({ node });
 
+const getTransactions = async () => {
+  const { data } = await client.transactions.get({
+    senderId: "17890508407355636952L",
+    limit: 86,
+    sort: "timestamp:desc"
+  });
+  return data;
+};
+
 const getRewards = async (fromTimestamp, toTimestamp) => {
   console.log("Get forging data...");
   // Get delegate address for next request
@@ -21,8 +30,8 @@ const getRewards = async (fromTimestamp, toTimestamp) => {
   const { address } = delegate.account;
 
   const { data } = await client.delegates.getForgingStatistics(address, {
-    fromTimestamp,
-    toTimestamp
+    fromTimestamp: 1555852734000, // 1555852734000
+    toTimestamp: 1556056800000
   });
   const reward = fromRawLsk(data.rewards);
   const sharingReward = (reward * config.sharedPercent) / 100;
@@ -74,5 +83,6 @@ const getAccountsAndTotalVoteWeight = async () => {
 module.exports = {
   getAccountsAndTotalVoteWeight,
   getRewards,
+  getTransactions,
   client
 };

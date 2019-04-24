@@ -6,7 +6,8 @@
   "scripts": {
     "get:payouts": "node ./scripts/get-payouts.js",
     "sign:transactions": "node ./scripts/sign-transactions.js",
-    "broadcast:transactions": "node ./scripts/broadcast-transactions.js"
+    "broadcast:transactions": "node ./scripts/broadcast-transactions.js",
+    "verify": "node ./scripts/verify.js"
   },
   "dependencies": {
     "bignumber.js": "^5.0.0",
