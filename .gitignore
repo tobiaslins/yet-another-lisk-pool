@@ -2,3 +2,4 @@
 /data/payout*
 /data/donations.json
 /node_modules
+config.json
